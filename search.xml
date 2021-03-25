@@ -32,21 +32,6 @@
 ]]></content>
   </entry>
   <entry>
-    <title>使用指南</title>
-    <url>/2021/03/25/%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/</url>
-    <content><![CDATA[<p>本文记录一些常用指令。</p>
-<span id="more"></span>
-
-<h1 id="创建一篇新文章。"><a href="#创建一篇新文章。" class="headerlink" title="创建一篇新文章。"></a>创建一篇新文章。</h1><figure class="highlight text"><table><tr><td class="code"><pre><span class="line">hexo new &lt;title&gt;</span><br></pre></td></tr></table></figure>
-
-
-
-]]></content>
-      <tags>
-        <tag>入门</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Hello World</title>
     <url>/2021/03/24/hello-world/</url>
     <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
@@ -65,5 +50,20 @@
 
 <p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
 ]]></content>
+  </entry>
+  <entry>
+    <title>使用指南</title>
+    <url>/2021/03/25/%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/</url>
+    <content><![CDATA[<p>本文记录一些常用指令。</p>
+<span id="more"></span>
+
+<h1 id="创建一篇新文章。"><a href="#创建一篇新文章。" class="headerlink" title="创建一篇新文章。"></a>创建一篇新文章。</h1><figure class="highlight text"><table><tr><td class="code"><pre><span class="line">hexo new &lt;title&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+]]></content>
+      <tags>
+        <tag>入门</tag>
+      </tags>
   </entry>
 </search>
