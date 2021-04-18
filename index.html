@@ -195,6 +195,75 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/04/11/Modelselection/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/profile.jpg">
+      <meta itemprop="name" content="hzp">
+      <meta itemprop="description" content="个人空间">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="hzp的博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/04/11/Modelselection/" class="post-title-link" itemprop="url">Modelselection</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-04-11 10:24:36 / 修改时间：10:53:01" itemprop="dateCreated datePublished" datetime="2021-04-11T10:24:36+08:00">2021-04-11</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="Measuring-Accuracy-Using-Cross-Validation"><a href="#Measuring-Accuracy-Using-Cross-Validation" class="headerlink" title="Measuring Accuracy Using Cross-Validation"></a>Measuring Accuracy Using Cross-Validation</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> cross_val_score </span><br><span class="line">cross_val_score(sgd_clf, X_train, y_train_5, cv=<span class="number">3</span>, scoring=<span class="string">&quot;accuracy&quot;</span>)</span><br><span class="line"></span><br><span class="line">array([<span class="number">0.96355</span>, <span class="number">0.93795</span>, <span class="number">0.95615</span>])</span><br></pre></td></tr></table></figure>
+<p>However,this is simply because only about 10% of the images are 5s.</p>
+<h1 id="Confusion-Matrix"><a href="#Confusion-Matrix" class="headerlink" title="Confusion Matrix"></a>Confusion Matrix</h1><p>A much better way to evaluate the performance of a classifier is to look at the confusion matrix.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> cross_val_predict </span><br><span class="line">y_train_pred = cross_val_predict(sgd_clf, X_train, y_train_5, cv=<span class="number">3</span>)</span><br></pre></td></tr></table></figure>
+<p>Now you are ready to get the confusion matrix using the confusion_matrix()function.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> confusion_matrix </span><br><span class="line">confusion_matrix(y_train_5, y_train_pred) </span><br><span class="line"></span><br><span class="line">array([[<span class="number">53057</span>, <span class="number">1522</span>], [ <span class="number">1325</span>, <span class="number">4096</span>]])</span><br></pre></td></tr></table></figure>
+
+<p>i.e.<br>$$\begin{matrix}<br>TN&amp;FP\<br>FN&amp;TP<br>\end{matrix}$$</p>
+<h1 id="Precision-and-Recall"><a href="#Precision-and-Recall" class="headerlink" title="Precision and Recall"></a>Precision and Recall</h1><p>$$precision=\frac{TP}{TP+FP}$$<br>$$recall=\frac{TP}{TP+FN}$$</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> precision_score, recall_score</span><br><span class="line">precision_score(y_train_5, y_train_pred) <span class="comment"># == 4096 / (4096 + 1522) </span></span><br><span class="line"><span class="number">0.7290850836596654</span> </span><br><span class="line">recall_score(y_train_5, y_train_pred) <span class="comment"># == 4096 / (4096 + 1325) </span></span><br><span class="line"><span class="number">0.7555801512636044</span></span><br></pre></td></tr></table></figure>
+<p>To compute the F1 score, simply call the f1_score() function:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> f1_score </span><br><span class="line">f1_score(y_train_5, y_train_pred) </span><br><span class="line"><span class="number">0.7420962043663375</span></span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2021/03/29/%E6%A8%A1%E5%9E%8B%E9%80%89%E6%8B%A9%E4%B8%8E%E9%AA%8C%E8%AF%81/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -250,6 +319,95 @@
 <li></li>
 </ul>
 <h1 id="模型评估方法"><a href="#模型评估方法" class="headerlink" title="模型评估方法"></a>模型评估方法</h1><h2 id="留出法"><a href="#留出法" class="headerlink" title="留出法"></a>留出法</h2><h2 id="交叉验证法"><a href="#交叉验证法" class="headerlink" title="交叉验证法"></a>交叉验证法</h2><h2 id="自助法"><a href="#自助法" class="headerlink" title="自助法"></a>自助法</h2>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/03/28/%E5%AE%9E%E9%AA%8C%E8%AF%B4%E6%98%8E/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/profile.jpg">
+      <meta itemprop="name" content="hzp">
+      <meta itemprop="description" content="个人空间">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="hzp的博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/03/28/%E5%AE%9E%E9%AA%8C%E8%AF%B4%E6%98%8E/" class="post-title-link" itemprop="url">未命名</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-03-28 19:59:52" itemprop="dateCreated datePublished" datetime="2021-03-28T19:59:52+08:00">2021-03-28</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-03-30 15:05:26" itemprop="dateModified" datetime="2021-03-30T15:05:26+08:00">2021-03-30</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="实验说明"><a href="#实验说明" class="headerlink" title="实验说明"></a>实验说明</h1><h2 id="实验目的"><a href="#实验目的" class="headerlink" title="实验目的"></a>实验目的</h2><p>掌握线性回归模型，并应用于实际问题，根据给定的性能度量对预测结果进行分析。</p>
+<h1 id="线性模型基本原理"><a href="#线性模型基本原理" class="headerlink" title="线性模型基本原理"></a>线性模型基本原理</h1><p>给定数据集$D={(x_i,y_i)}<em>{i=1}^m，x=(x_1,x_2,…,x_d),y_i∈R$,线性回归试图学得一个通过属性的线性组合来进行预测的函数：<br>$$<br>f(x)=w^TX+b<br>$$<br>使得真实值与用该线性模型的输出值的误差尽可能小：<br>$$<br>w^*=(w,b)<br>$$<br>$$<br>w^*=arg,\min</em>{(w,b)}(f(x)-y)^T(f(x)-y)<br>$$</p>
+<p>对该式右边求导:<br>$$<br>\frac{\partial E}{\partial w^*}=0<br>$$</p>
+<p>得到：</p>
+<p>$$<br>X^TXw^*=Xy<br>$$</p>
+<p>当$X^TX$可逆时：<br>$$<br>w^*=(X^TX)^{-1}X^Ty<br>$$<br>当$X^TX$不可逆时，存在多个解：<br>$$<br>w^*=(X^TX+\lambda I)^{-1}X^Ty<br>$$</p>
+<p>可以通过控制$\lambda$来进行选择。</p>
+<h1 id="实验设置"><a href="#实验设置" class="headerlink" title="实验设置"></a>实验设置</h1><h2 id="数据集介绍"><a href="#数据集介绍" class="headerlink" title="数据集介绍"></a>数据集介绍</h2><p><strong>数据集名称</strong>： Combined Cycle Power Plant Data Set ，包含在6年中（2006年至2011年）从联合循环发电厂收集的9568个样本数据。 <strong>每个样本数据属性</strong>：每小时平均环境变量温度（T）、环境压力（AP）、相对湿度（RH）和排气真空（V）。</p>
+<p><strong>训练数据</strong>：文件名为“ccpp_train.csv”，训练数据共有7176个。</p>
+<p><strong>测试数据</strong>：文件名“ccpp_test.csv”，测试数据共有2392个。该文件中包含的每个样本的目标值用作模型预测结果的评估。</p>
+<h2 id="评价标准"><a href="#评价标准" class="headerlink" title="评价标准"></a>评价标准</h2><p>$$<br>RMSE=\sqrt{\frac{1}{N}\sum_{i=1}^n(f(x_i)-y_i)}<br>$$</p>
+<p>均方误差越小，预测结果越准确。</p>
+<h1 id="实验结果及分析"><a href="#实验结果及分析" class="headerlink" title="实验结果及分析"></a>实验结果及分析</h1><h2 id="数据预处理的选择"><a href="#数据预处理的选择" class="headerlink" title="数据预处理的选择"></a>数据预处理的选择</h2><p>采用原始数据进行线性回归预测：</p>
+<p>得到的均方误差为：</p>
+<p><img src="D:\Python\ML_homework\Projects\Project1\Project1\before_normalization.png" alt="归一化处理前"></p>
+<p>对连续值属性进行0-1归一化（0-1 normalization）处理后：<br>$$<br>x=\frac{x-x_{min}}{x_{max}-x_{min}}<br>$$<br>再将预测值还原，得到的均方误差为：<img src="D:\Python\ML_homework\Projects\Project1\Project1\after_normalization.png"></p>
+<p>可以发现归一化后的误差略大于原始数据，故预处理可能是不必要的，直接使用原始数据进行线性回归即可。</p>
+<p><strong>分析：</strong></p>
+<p>归一化在线性回归（最小二乘法，非梯度下降）中只是引入了一个线性伸缩变换，应与变换前误差一致，而归一化可能会造成相关属性的精度丢失，造成了额外的误差。</p>
+<h2 id="回归任务结果与分析"><a href="#回归任务结果与分析" class="headerlink" title="回归任务结果与分析"></a>回归任务结果与分析</h2><p>根据对以上结果的分析，最终的多重线性回归方程可写为：<br>$$<br>PE = (-1.97134989)*AT+ (-0.23427155)*V+ (0.06294429)*AP+ (-0.15741434)*RH+453.5425469126229<br>$$</p>
+<p>$AT,V,RH$与$PE$呈负相关，$AP$与$PE$呈正相关，与对训练集和测试集粗略的观察结果相一致。</p>
+<h2 id="文件附录"><a href="#文件附录" class="headerlink" title="文件附录"></a>文件附录</h2><p><strong>源代码：</strong>linear_model.ipynb</p>
+<p><strong>源代码执行结果:</strong>  result.pdf</p>
+<p><strong>预处理后数据：</strong> preprocess_train.csv, preprocess_test.csv</p>
+<p><strong>最终预测数据：</strong>prediction.csv</p>
+
       
     </div>
 
@@ -556,14 +714,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">4</span>
+          <span class="site-state-item-count">6</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">6</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
