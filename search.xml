@@ -23,28 +23,35 @@
       </tags>
   </entry>
   <entry>
-    <title>模型评估与选择</title>
-    <url>/2021/03/29/%E6%A8%A1%E5%9E%8B%E9%80%89%E6%8B%A9%E4%B8%8E%E9%AA%8C%E8%AF%81/</url>
-    <content><![CDATA[<h1 id="经验误差与过拟合"><a href="#经验误差与过拟合" class="headerlink" title="经验误差与过拟合"></a>经验误差与过拟合</h1><p>训练集上的误差称为“训练误差”(training error),经验误差(empirical error).</p>
-<p>新样本上的误差称为“泛化误差”（generalization error)</p>
-<h2 id="欠拟合"><a href="#欠拟合" class="headerlink" title="欠拟合"></a>欠拟合</h2><p>对训练样本的一般特质尚未学习完全</p>
-<p><strong>造成原因：</strong></p>
-<ul>
-<li><p>学习能力低下</p>
-</li>
-<li></li>
+    <title></title>
+    <url>/2021/03/24/Pandas%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<hr>
+<h2 id="Pandas使用"><a href="#Pandas使用" class="headerlink" title="Pandas使用"></a>Pandas使用</h2><p><strong>一般约定：</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br></pre></td></tr></table></figure>
+<h1 id="对pandas库的理解"><a href="#对pandas库的理解" class="headerlink" title="对pandas库的理解"></a>对pandas库的理解</h1><ul>
+<li>两个基本数据类型：<strong>Series</strong>,<strong>DataFrame</strong></li>
+<li><strong>Series</strong>提供一维数据类型</li>
+<li><strong>DataFrame</strong>提供高维数据类型</li>
 </ul>
-<h2 id="过拟合"><a href="#过拟合" class="headerlink" title="过拟合"></a>过拟合</h2><p>误把训练样本的一些自身特性当作潜在规律。</p>
-<p><strong>造成原因：</strong></p>
+<span id="more"></span>
+
+<h1 id="Series类型"><a href="#Series类型" class="headerlink" title="Series类型"></a>Series类型</h1><p>由一组数据及其索引构成。<br><strong>成员：</strong></p>
 <ul>
-<li>学习能力过于强大</li>
-<li></li>
+<li><strong>index</strong>，索引</li>
+<li><strong>values</strong>，数据，ndarray类型</li>
 </ul>
-<h1 id="模型评估方法"><a href="#模型评估方法" class="headerlink" title="模型评估方法"></a>模型评估方法</h1><h2 id="留出法"><a href="#留出法" class="headerlink" title="留出法"></a>留出法</h2><h2 id="交叉验证法"><a href="#交叉验证法" class="headerlink" title="交叉验证法"></a>交叉验证法</h2><h2 id="自助法"><a href="#自助法" class="headerlink" title="自助法"></a>自助法</h2>]]></content>
-      <tags>
-        <tag>西瓜书</tag>
-        <tag>机器学习</tag>
-      </tags>
+<p>既有自定义索引，又有如同数组的索引。<br><strong>创建方法：</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">列表创建</span><br><span class="line">pd.series(<span class="built_in">list</span>,index=<span class="built_in">list</span>)</span><br><span class="line">数组创建</span><br><span class="line">pd.series(ndarray,index=ndarray)</span><br><span class="line">标量创建</span><br><span class="line">pd.series(data,index=<span class="built_in">list</span>)</span><br><span class="line">Python字典创建</span><br><span class="line">pd.series(<span class="built_in">dict</span>)</span><br><span class="line">也可以通过index将先后顺序重新排序：</span><br><span class="line">pd.series(<span class="built_in">dict</span>，index=<span class="built_in">list</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="Series基本操作"><a href="#Series基本操作" class="headerlink" title="Series基本操作"></a>Series基本操作</h2><p><strong>基本操作与数组和字典类似。</strong><br> <strong>name属性：</strong><br> <strong>series</strong>存在<strong>name</strong>成员，可以对这个序列命名。<br><strong>index</strong>,<strong>values</strong>也都存在<strong>name</strong>成员，打印的时候可以显示在表头</p>
+<h3 id="对齐操作"><a href="#对齐操作" class="headerlink" title="对齐操作"></a>对齐操作</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">当出现series+series之类运算，会采用索引对齐相加，生成新的series。</span><br></pre></td></tr></table></figure>
+<h1 id="DataFrame"><a href="#DataFrame" class="headerlink" title="DataFrame"></a>DataFrame</h1><p>共用相同索引的多条列组成，类似表格。<br><strong>成员：</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">df.columns</span><br></pre></td></tr></table></figure>
+<h2 id="DataFrame基本操作"><a href="#DataFrame基本操作" class="headerlink" title="DataFrame基本操作"></a>DataFrame基本操作</h2><h3 id="汇总函数"><a href="#汇总函数" class="headerlink" title="汇总函数"></a>汇总函数</h3><p><strong>截断</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">返回表或者序列的前n行，默认参数为<span class="number">5</span></span><br><span class="line">df.head(n)</span><br><span class="line">返回表或者序列的后n行，默认参数为<span class="number">5</span></span><br><span class="line">df.tail(n)</span><br></pre></td></tr></table></figure>
+<p><strong>基本信息</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">df.info()</span><br><span class="line">df.describe()</span><br></pre></td></tr></table></figure>
+
+]]></content>
   </entry>
   <entry>
     <title></title>
@@ -77,35 +84,28 @@
 ]]></content>
   </entry>
   <entry>
-    <title></title>
-    <url>/2021/03/24/Pandas%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<hr>
-<h2 id="Pandas使用"><a href="#Pandas使用" class="headerlink" title="Pandas使用"></a>Pandas使用</h2><p><strong>一般约定：</strong></p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br></pre></td></tr></table></figure>
-<h1 id="对pandas库的理解"><a href="#对pandas库的理解" class="headerlink" title="对pandas库的理解"></a>对pandas库的理解</h1><ul>
-<li>两个基本数据类型：<strong>Series</strong>,<strong>DataFrame</strong></li>
-<li><strong>Series</strong>提供一维数据类型</li>
-<li><strong>DataFrame</strong>提供高维数据类型</li>
-</ul>
-<span id="more"></span>
-
-<h1 id="Series类型"><a href="#Series类型" class="headerlink" title="Series类型"></a>Series类型</h1><p>由一组数据及其索引构成。<br><strong>成员：</strong></p>
+    <title>模型评估与选择</title>
+    <url>/2021/03/29/%E6%A8%A1%E5%9E%8B%E9%80%89%E6%8B%A9%E4%B8%8E%E9%AA%8C%E8%AF%81/</url>
+    <content><![CDATA[<h1 id="经验误差与过拟合"><a href="#经验误差与过拟合" class="headerlink" title="经验误差与过拟合"></a>经验误差与过拟合</h1><p>训练集上的误差称为“训练误差”(training error),经验误差(empirical error).</p>
+<p>新样本上的误差称为“泛化误差”（generalization error)</p>
+<h2 id="欠拟合"><a href="#欠拟合" class="headerlink" title="欠拟合"></a>欠拟合</h2><p>对训练样本的一般特质尚未学习完全</p>
+<p><strong>造成原因：</strong></p>
 <ul>
-<li><strong>index</strong>，索引</li>
-<li><strong>values</strong>，数据，ndarray类型</li>
+<li><p>学习能力低下</p>
+</li>
+<li></li>
 </ul>
-<p>既有自定义索引，又有如同数组的索引。<br><strong>创建方法：</strong></p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">列表创建</span><br><span class="line">pd.series(<span class="built_in">list</span>,index=<span class="built_in">list</span>)</span><br><span class="line">数组创建</span><br><span class="line">pd.series(ndarray,index=ndarray)</span><br><span class="line">标量创建</span><br><span class="line">pd.series(data,index=<span class="built_in">list</span>)</span><br><span class="line">Python字典创建</span><br><span class="line">pd.series(<span class="built_in">dict</span>)</span><br><span class="line">也可以通过index将先后顺序重新排序：</span><br><span class="line">pd.series(<span class="built_in">dict</span>，index=<span class="built_in">list</span>)</span><br></pre></td></tr></table></figure>
-<h2 id="Series基本操作"><a href="#Series基本操作" class="headerlink" title="Series基本操作"></a>Series基本操作</h2><p><strong>基本操作与数组和字典类似。</strong><br> <strong>name属性：</strong><br> <strong>series</strong>存在<strong>name</strong>成员，可以对这个序列命名。<br><strong>index</strong>,<strong>values</strong>也都存在<strong>name</strong>成员，打印的时候可以显示在表头</p>
-<h3 id="对齐操作"><a href="#对齐操作" class="headerlink" title="对齐操作"></a>对齐操作</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">当出现series+series之类运算，会采用索引对齐相加，生成新的series。</span><br></pre></td></tr></table></figure>
-<h1 id="DataFrame"><a href="#DataFrame" class="headerlink" title="DataFrame"></a>DataFrame</h1><p>共用相同索引的多条列组成，类似表格。<br><strong>成员：</strong></p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">df.columns</span><br></pre></td></tr></table></figure>
-<h2 id="DataFrame基本操作"><a href="#DataFrame基本操作" class="headerlink" title="DataFrame基本操作"></a>DataFrame基本操作</h2><h3 id="汇总函数"><a href="#汇总函数" class="headerlink" title="汇总函数"></a>汇总函数</h3><p><strong>截断</strong></p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">返回表或者序列的前n行，默认参数为<span class="number">5</span></span><br><span class="line">df.head(n)</span><br><span class="line">返回表或者序列的后n行，默认参数为<span class="number">5</span></span><br><span class="line">df.tail(n)</span><br></pre></td></tr></table></figure>
-<p><strong>基本信息</strong></p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">df.info()</span><br><span class="line">df.describe()</span><br></pre></td></tr></table></figure>
-
-]]></content>
+<h2 id="过拟合"><a href="#过拟合" class="headerlink" title="过拟合"></a>过拟合</h2><p>误把训练样本的一些自身特性当作潜在规律。</p>
+<p><strong>造成原因：</strong></p>
+<ul>
+<li>学习能力过于强大</li>
+<li></li>
+</ul>
+<h1 id="模型评估方法"><a href="#模型评估方法" class="headerlink" title="模型评估方法"></a>模型评估方法</h1><h2 id="留出法"><a href="#留出法" class="headerlink" title="留出法"></a>留出法</h2><h2 id="交叉验证法"><a href="#交叉验证法" class="headerlink" title="交叉验证法"></a>交叉验证法</h2><h2 id="自助法"><a href="#自助法" class="headerlink" title="自助法"></a>自助法</h2>]]></content>
+      <tags>
+        <tag>西瓜书</tag>
+        <tag>机器学习</tag>
+      </tags>
   </entry>
   <entry>
     <title>线程相关函数</title>
