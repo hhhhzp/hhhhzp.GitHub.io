@@ -52,6 +52,21 @@
 ]]></content>
   </entry>
   <entry>
+    <title>使用指南</title>
+    <url>/2021/03/25/%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/</url>
+    <content><![CDATA[<p>本文记录一些常用指令。</p>
+<span id="more"></span>
+
+<h1 id="创建一篇新文章。"><a href="#创建一篇新文章。" class="headerlink" title="创建一篇新文章。"></a>创建一篇新文章。</h1><figure class="highlight text"><table><tr><td class="code"><pre><span class="line">hexo new &lt;title&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+]]></content>
+      <tags>
+        <tag>入门</tag>
+      </tags>
+  </entry>
+  <entry>
     <title></title>
     <url>/2021/03/28/%E5%AE%9E%E9%AA%8C%E8%AF%B4%E6%98%8E/</url>
     <content><![CDATA[<h1 id="实验说明"><a href="#实验说明" class="headerlink" title="实验说明"></a>实验说明</h1><h2 id="实验目的"><a href="#实验目的" class="headerlink" title="实验目的"></a>实验目的</h2><p>掌握线性回归模型，并应用于实际问题，根据给定的性能度量对预测结果进行分析。</p>
@@ -80,21 +95,6 @@
 <p><strong>预处理后数据：</strong> preprocess_train.csv, preprocess_test.csv</p>
 <p><strong>最终预测数据：</strong>prediction.csv</p>
 ]]></content>
-  </entry>
-  <entry>
-    <title>使用指南</title>
-    <url>/2021/03/25/%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/</url>
-    <content><![CDATA[<p>本文记录一些常用指令。</p>
-<span id="more"></span>
-
-<h1 id="创建一篇新文章。"><a href="#创建一篇新文章。" class="headerlink" title="创建一篇新文章。"></a>创建一篇新文章。</h1><figure class="highlight text"><table><tr><td class="code"><pre><span class="line">hexo new &lt;title&gt;</span><br></pre></td></tr></table></figure>
-
-
-
-]]></content>
-      <tags>
-        <tag>入门</tag>
-      </tags>
   </entry>
   <entry>
     <title>模型评估与选择</title>
