@@ -20,20 +20,22 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="个人空间">
+  <meta name="description" content="实验说明实验目的掌握线性回归模型，并应用于实际问题，根据给定的性能度量对预测结果进行分析。 线性模型基本原理给定数据集$D&#x3D;{(x_i,y_i)}{i&#x3D;1}^m，x&#x3D;(x_1,x_2,…,x_d),y_i∈R$,线性回归试图学得一个通过属性的线性组合来进行预测的函数：$$f(x)&#x3D;w^TX+b$$使得真实值与用该线性模型的输出值的误差尽可能小：$$w^*&#x3D;(w,b)$$$$w^*&#x3D;arg,\min">
 <meta property="og:type" content="article">
-<meta property="og:title" content="模型训练">
-<meta property="og:url" content="http://example.com/2021/04/18/%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83/index.html">
+<meta property="og:title" content="hzp的博客">
+<meta property="og:url" content="http://example.com/2021/03/28/demo/%E5%AE%9E%E9%AA%8C%E8%AF%B4%E6%98%8E/index.html">
 <meta property="og:site_name" content="hzp的博客">
-<meta property="og:description" content="个人空间">
+<meta property="og:description" content="实验说明实验目的掌握线性回归模型，并应用于实际问题，根据给定的性能度量对预测结果进行分析。 线性模型基本原理给定数据集$D&#x3D;{(x_i,y_i)}{i&#x3D;1}^m，x&#x3D;(x_1,x_2,…,x_d),y_i∈R$,线性回归试图学得一个通过属性的线性组合来进行预测的函数：$$f(x)&#x3D;w^TX+b$$使得真实值与用该线性模型的输出值的误差尽可能小：$$w^*&#x3D;(w,b)$$$$w^*&#x3D;arg,\min">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-04-18T07:53:16.000Z">
-<meta property="article:modified_time" content="2021-04-18T07:54:09.501Z">
+<meta property="og:image" content="d:/Python/ML_homework/Projects/Project1/Project1/before_normalization.png">
+<meta property="og:image" content="d:/Python/ML_homework/Projects/Project1/Project1/after_normalization.png">
+<meta property="article:published_time" content="2021-03-28T11:59:52.525Z">
+<meta property="article:modified_time" content="2021-04-18T08:04:50.765Z">
 <meta property="article:author" content="hzp">
-<meta property="article:tag" content="handson-ml">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="d:/Python/ML_homework/Projects/Project1/Project1/before_normalization.png">
 
-<link rel="canonical" href="http://example.com/2021/04/18/%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83/">
+<link rel="canonical" href="http://example.com/2021/03/28/demo/%E5%AE%9E%E9%AA%8C%E8%AF%B4%E6%98%8E/">
 
 
 <script id="page-configurations">
@@ -46,7 +48,7 @@
   };
 </script>
 
-  <title>模型训练 | hzp的博客</title>
+  <title> | hzp的博客</title>
   
 
 
@@ -203,7 +205,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/04/18/%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/03/28/demo/%E5%AE%9E%E9%AA%8C%E8%AF%B4%E6%98%8E/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/profile.jpg">
@@ -216,7 +218,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          模型训练
+          
         </h1>
 
         <div class="post-meta">
@@ -225,10 +227,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2021-04-18 15:53:16 / 修改时间：15:54:09" itemprop="dateCreated datePublished" datetime="2021-04-18T15:53:16+08:00">2021-04-18</time>
+              <time title="创建时间：2021-03-28 19:59:52" itemprop="dateCreated datePublished" datetime="2021-03-28T19:59:52+08:00">2021-03-28</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-04-18 16:04:50" itemprop="dateModified" datetime="2021-04-18T16:04:50+08:00">2021-04-18</time>
+              </span>
 
           
 
@@ -241,7 +249,32 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        
+        <h1 id="实验说明"><a href="#实验说明" class="headerlink" title="实验说明"></a>实验说明</h1><h2 id="实验目的"><a href="#实验目的" class="headerlink" title="实验目的"></a>实验目的</h2><p>掌握线性回归模型，并应用于实际问题，根据给定的性能度量对预测结果进行分析。</p>
+<h1 id="线性模型基本原理"><a href="#线性模型基本原理" class="headerlink" title="线性模型基本原理"></a>线性模型基本原理</h1><p>给定数据集$D={(x_i,y_i)}<em>{i=1}^m，x=(x_1,x_2,…,x_d),y_i∈R$,线性回归试图学得一个通过属性的线性组合来进行预测的函数：<br>$$<br>f(x)=w^TX+b<br>$$<br>使得真实值与用该线性模型的输出值的误差尽可能小：<br>$$<br>w^*=(w,b)<br>$$<br>$$<br>w^*=arg,\min</em>{(w,b)}(f(x)-y)^T(f(x)-y)<br>$$</p>
+<p>对该式右边求导:<br>$$<br>\frac{\partial E}{\partial w^*}=0<br>$$</p>
+<p>得到：</p>
+<p>$$<br>X^TXw^*=Xy<br>$$</p>
+<p>当$X^TX$可逆时：<br>$$<br>w^*=(X^TX)^{-1}X^Ty<br>$$<br>当$X^TX$不可逆时，存在多个解：<br>$$<br>w^*=(X^TX+\lambda I)^{-1}X^Ty<br>$$</p>
+<p>可以通过控制$\lambda$来进行选择。</p>
+<h1 id="实验设置"><a href="#实验设置" class="headerlink" title="实验设置"></a>实验设置</h1><h2 id="数据集介绍"><a href="#数据集介绍" class="headerlink" title="数据集介绍"></a>数据集介绍</h2><p><strong>数据集名称</strong>： Combined Cycle Power Plant Data Set ，包含在6年中（2006年至2011年）从联合循环发电厂收集的9568个样本数据。 <strong>每个样本数据属性</strong>：每小时平均环境变量温度（T）、环境压力（AP）、相对湿度（RH）和排气真空（V）。</p>
+<p><strong>训练数据</strong>：文件名为“ccpp_train.csv”，训练数据共有7176个。</p>
+<p><strong>测试数据</strong>：文件名“ccpp_test.csv”，测试数据共有2392个。该文件中包含的每个样本的目标值用作模型预测结果的评估。</p>
+<h2 id="评价标准"><a href="#评价标准" class="headerlink" title="评价标准"></a>评价标准</h2><p>$$<br>RMSE=\sqrt{\frac{1}{N}\sum_{i=1}^n(f(x_i)-y_i)}<br>$$</p>
+<p>均方误差越小，预测结果越准确。</p>
+<h1 id="实验结果及分析"><a href="#实验结果及分析" class="headerlink" title="实验结果及分析"></a>实验结果及分析</h1><h2 id="数据预处理的选择"><a href="#数据预处理的选择" class="headerlink" title="数据预处理的选择"></a>数据预处理的选择</h2><p>采用原始数据进行线性回归预测：</p>
+<p>得到的均方误差为：</p>
+<p><img src="D:\Python\ML_homework\Projects\Project1\Project1\before_normalization.png" alt="归一化处理前"></p>
+<p>对连续值属性进行0-1归一化（0-1 normalization）处理后：<br>$$<br>x=\frac{x-x_{min}}{x_{max}-x_{min}}<br>$$<br>再将预测值还原，得到的均方误差为：<img src="D:\Python\ML_homework\Projects\Project1\Project1\after_normalization.png"></p>
+<p>可以发现归一化后的误差略大于原始数据，故预处理可能是不必要的，直接使用原始数据进行线性回归即可。</p>
+<p><strong>分析：</strong></p>
+<p>归一化在线性回归（最小二乘法，非梯度下降）中只是引入了一个线性伸缩变换，应与变换前误差一致，而归一化可能会造成相关属性的精度丢失，造成了额外的误差。</p>
+<h2 id="回归任务结果与分析"><a href="#回归任务结果与分析" class="headerlink" title="回归任务结果与分析"></a>回归任务结果与分析</h2><p>根据对以上结果的分析，最终的多重线性回归方程可写为：<br>$$<br>PE = (-1.97134989)*AT+ (-0.23427155)*V+ (0.06294429)*AP+ (-0.15741434)*RH+453.5425469126229<br>$$</p>
+<p>$AT,V,RH$与$PE$呈负相关，$AP$与$PE$呈正相关，与对训练集和测试集粗略的观察结果相一致。</p>
+<h2 id="文件附录"><a href="#文件附录" class="headerlink" title="文件附录"></a>文件附录</h2><p><strong>源代码：</strong>linear_model.ipynb</p>
+<p><strong>源代码执行结果:</strong>  result.pdf</p>
+<p><strong>预处理后数据：</strong> preprocess_train.csv, preprocess_test.csv</p>
+<p><strong>最终预测数据：</strong>prediction.csv</p>
+
     </div>
 
     
@@ -249,10 +282,6 @@
     
 
       <footer class="post-footer">
-          
-          <div class="post-tags">
-              <a href="/tags/handson-ml/" rel="tag"><i class="fa fa-tag"></i> handson-ml</a>
-          </div>
 
         
 
@@ -260,10 +289,13 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/04/11/Modelselection/" rel="prev" title="Modelselection">
-      <i class="fa fa-chevron-left"></i> Modelselection
+    <a href="/2021/03/27/%E7%BA%BF%E7%A8%8B%E7%9B%B8%E5%85%B3%E5%87%BD%E6%95%B0/" rel="prev" title="线程相关函数">
+      <i class="fa fa-chevron-left"></i> 线程相关函数
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2021/03/29/%E6%A8%A1%E5%9E%8B%E9%80%89%E6%8B%A9%E4%B8%8E%E9%AA%8C%E8%AF%81/" rel="next" title="模型评估与选择">
+      模型评估与选择 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -322,6 +354,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%9E%E9%AA%8C%E8%AF%B4%E6%98%8E"><span class="nav-number">1.</span> <span class="nav-text">实验说明</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E9%AA%8C%E7%9B%AE%E7%9A%84"><span class="nav-number">1.1.</span> <span class="nav-text">实验目的</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BA%BF%E6%80%A7%E6%A8%A1%E5%9E%8B%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86"><span class="nav-number">2.</span> <span class="nav-text">线性模型基本原理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%9E%E9%AA%8C%E8%AE%BE%E7%BD%AE"><span class="nav-number">3.</span> <span class="nav-text">实验设置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E9%9B%86%E4%BB%8B%E7%BB%8D"><span class="nav-number">3.1.</span> <span class="nav-text">数据集介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%84%E4%BB%B7%E6%A0%87%E5%87%86"><span class="nav-number">3.2.</span> <span class="nav-text">评价标准</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%9E%E9%AA%8C%E7%BB%93%E6%9E%9C%E5%8F%8A%E5%88%86%E6%9E%90"><span class="nav-number">4.</span> <span class="nav-text">实验结果及分析</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E9%A2%84%E5%A4%84%E7%90%86%E7%9A%84%E9%80%89%E6%8B%A9"><span class="nav-number">4.1.</span> <span class="nav-text">数据预处理的选择</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9E%E5%BD%92%E4%BB%BB%E5%8A%A1%E7%BB%93%E6%9E%9C%E4%B8%8E%E5%88%86%E6%9E%90"><span class="nav-number">4.2.</span> <span class="nav-text">回归任务结果与分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E9%99%84%E5%BD%95"><span class="nav-number">4.3.</span> <span class="nav-text">文件附录</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
