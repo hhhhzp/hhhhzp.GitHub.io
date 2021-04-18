@@ -1,6 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Modelselection</title>
+    <url>/2021/04/11/Modelselection/</url>
+    <content><![CDATA[<h1 id="Measuring-Accuracy-Using-Cross-Validation"><a href="#Measuring-Accuracy-Using-Cross-Validation" class="headerlink" title="Measuring Accuracy Using Cross-Validation"></a>Measuring Accuracy Using Cross-Validation</h1><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> cross_val_score </span><br><span class="line">cross_val_score(sgd_clf, X_train, y_train_5, cv=<span class="number">3</span>, scoring=<span class="string">&quot;accuracy&quot;</span>)</span><br><span class="line"></span><br><span class="line">array([<span class="number">0.96355</span>, <span class="number">0.93795</span>, <span class="number">0.95615</span>])</span><br></pre></td></tr></table></figure>
+<p>However,this is simply because only about 10% of the images are 5s.</p>
+<h1 id="Confusion-Matrix"><a href="#Confusion-Matrix" class="headerlink" title="Confusion Matrix"></a>Confusion Matrix</h1><p>A much better way to evaluate the performance of a classifier is to look at the confusion matrix.</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> cross_val_predict </span><br><span class="line">y_train_pred = cross_val_predict(sgd_clf, X_train, y_train_5, cv=<span class="number">3</span>)</span><br></pre></td></tr></table></figure>
+<p>Now you are ready to get the confusion matrix using the confusion_matrix()function.</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> confusion_matrix </span><br><span class="line">confusion_matrix(y_train_5, y_train_pred) </span><br><span class="line"></span><br><span class="line">array([[<span class="number">53057</span>, <span class="number">1522</span>], [ <span class="number">1325</span>, <span class="number">4096</span>]])</span><br></pre></td></tr></table></figure>
+
+<p>i.e.<br>$$<br>\begin{matrix}<br>TN&amp;FP\<br>FN&amp;TP<br>\end{matrix}<br>$$</p>
+<h1 id="Precision-and-Recall"><a href="#Precision-and-Recall" class="headerlink" title="Precision and Recall"></a>Precision and Recall</h1><p>$$<br>precision=\frac{TP}{TP+FP}<br>$$</p>
+<p>$$<br>recall=\frac{TP}{TP+FN}<br>$$</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> precision_score, recall_score</span><br><span class="line">precision_score(y_train_5, y_train_pred) <span class="comment"># == 4096 / (4096 + 1522) </span></span><br><span class="line"><span class="number">0.7290850836596654</span> </span><br><span class="line">recall_score(y_train_5, y_train_pred) <span class="comment"># == 4096 / (4096 + 1325) </span></span><br><span class="line"><span class="number">0.7555801512636044</span></span><br></pre></td></tr></table></figure>
+<p>To compute the F1 score, simply call the f1_score() function:</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> f1_score </span><br><span class="line">f1_score(y_train_5, y_train_pred) </span><br><span class="line"></span><br><span class="line"><span class="number">0.7420962043663375</span></span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>sklearn</tag>
+        <tag>ML</tag>
+      </tags>
+  </entry>
+  <entry>
     <title></title>
     <url>/2021/03/24/Pandas%E4%BD%BF%E7%94%A8/</url>
     <content><![CDATA[<hr>
@@ -32,25 +55,11 @@
 ]]></content>
   </entry>
   <entry>
-    <title>Modelselection</title>
-    <url>/2021/04/11/Modelselection/</url>
-    <content><![CDATA[<h1 id="Measuring-Accuracy-Using-Cross-Validation"><a href="#Measuring-Accuracy-Using-Cross-Validation" class="headerlink" title="Measuring Accuracy Using Cross-Validation"></a>Measuring Accuracy Using Cross-Validation</h1><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> cross_val_score </span><br><span class="line">cross_val_score(sgd_clf, X_train, y_train_5, cv=<span class="number">3</span>, scoring=<span class="string">&quot;accuracy&quot;</span>)</span><br><span class="line"></span><br><span class="line">array([<span class="number">0.96355</span>, <span class="number">0.93795</span>, <span class="number">0.95615</span>])</span><br></pre></td></tr></table></figure>
-<p>However,this is simply because only about 10% of the images are 5s.</p>
-<h1 id="Confusion-Matrix"><a href="#Confusion-Matrix" class="headerlink" title="Confusion Matrix"></a>Confusion Matrix</h1><p>A much better way to evaluate the performance of a classifier is to look at the confusion matrix.</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> cross_val_predict </span><br><span class="line">y_train_pred = cross_val_predict(sgd_clf, X_train, y_train_5, cv=<span class="number">3</span>)</span><br></pre></td></tr></table></figure>
-<p>Now you are ready to get the confusion matrix using the confusion_matrix()function.</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> confusion_matrix </span><br><span class="line">confusion_matrix(y_train_5, y_train_pred) </span><br><span class="line"></span><br><span class="line">array([[<span class="number">53057</span>, <span class="number">1522</span>], [ <span class="number">1325</span>, <span class="number">4096</span>]])</span><br></pre></td></tr></table></figure>
-
-<p>i.e.<br>$$\begin{matrix}<br>TN&amp;FP\<br>FN&amp;TP<br>\end{matrix}$$</p>
-<h1 id="Precision-and-Recall"><a href="#Precision-and-Recall" class="headerlink" title="Precision and Recall"></a>Precision and Recall</h1><p>$$precision=\frac{TP}{TP+FP}$$<br>$$recall=\frac{TP}{TP+FN}$$</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> precision_score, recall_score</span><br><span class="line">precision_score(y_train_5, y_train_pred) <span class="comment"># == 4096 / (4096 + 1522) </span></span><br><span class="line"><span class="number">0.7290850836596654</span> </span><br><span class="line">recall_score(y_train_5, y_train_pred) <span class="comment"># == 4096 / (4096 + 1325) </span></span><br><span class="line"><span class="number">0.7555801512636044</span></span><br></pre></td></tr></table></figure>
-<p>To compute the F1 score, simply call the f1_score() function:</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> f1_score </span><br><span class="line">f1_score(y_train_5, y_train_pred) </span><br><span class="line"></span><br><span class="line"><span class="number">0.7420962043663375</span></span><br></pre></td></tr></table></figure>
-
-]]></content>
+    <title>模型训练</title>
+    <url>/2021/04/18/%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83/</url>
+    <content><![CDATA[]]></content>
       <tags>
-        <tag>sklearn</tag>
-        <tag>ML</tag>
+        <tag>handson-ml</tag>
       </tags>
   </entry>
   <entry>
@@ -84,38 +93,6 @@
 ]]></content>
   </entry>
   <entry>
-    <title>模型训练</title>
-    <url>/2021/04/18/%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83/</url>
-    <content><![CDATA[]]></content>
-      <tags>
-        <tag>handson-ml</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>模型评估与选择</title>
-    <url>/2021/03/29/%E6%A8%A1%E5%9E%8B%E9%80%89%E6%8B%A9%E4%B8%8E%E9%AA%8C%E8%AF%81/</url>
-    <content><![CDATA[<h1 id="经验误差与过拟合"><a href="#经验误差与过拟合" class="headerlink" title="经验误差与过拟合"></a>经验误差与过拟合</h1><p>训练集上的误差称为“训练误差”(training error),经验误差(empirical error).</p>
-<p>新样本上的误差称为“泛化误差”（generalization error)</p>
-<h2 id="欠拟合"><a href="#欠拟合" class="headerlink" title="欠拟合"></a>欠拟合</h2><p>对训练样本的一般特质尚未学习完全</p>
-<p><strong>造成原因：</strong></p>
-<ul>
-<li><p>学习能力低下</p>
-</li>
-<li></li>
-</ul>
-<h2 id="过拟合"><a href="#过拟合" class="headerlink" title="过拟合"></a>过拟合</h2><p>误把训练样本的一些自身特性当作潜在规律。</p>
-<p><strong>造成原因：</strong></p>
-<ul>
-<li>学习能力过于强大</li>
-<li></li>
-</ul>
-<h1 id="模型评估方法"><a href="#模型评估方法" class="headerlink" title="模型评估方法"></a>模型评估方法</h1><h2 id="留出法"><a href="#留出法" class="headerlink" title="留出法"></a>留出法</h2><h2 id="交叉验证法"><a href="#交叉验证法" class="headerlink" title="交叉验证法"></a>交叉验证法</h2><h2 id="自助法"><a href="#自助法" class="headerlink" title="自助法"></a>自助法</h2>]]></content>
-      <tags>
-        <tag>西瓜书</tag>
-        <tag>机器学习</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>线程相关函数</title>
     <url>/2021/03/27/%E7%BA%BF%E7%A8%8B%E7%9B%B8%E5%85%B3%E5%87%BD%E6%95%B0/</url>
     <content><![CDATA[<h1 id="pthread-create"><a href="#pthread-create" class="headerlink" title="pthread_create"></a>pthread_create</h1><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;pthread.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">pthread_create</span><span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">                 <span class="keyword">pthread_t</span> *<span class="keyword">restrict</span> tidp,   <span class="comment">//指向线程标识符的指针。</span></span></span></span><br><span class="line"><span class="function"><span class="params">                 <span class="keyword">const</span> <span class="keyword">pthread_attr_t</span> *<span class="keyword">restrict</span> attr,  <span class="comment">//线程属性，默认为NULL</span></span></span></span><br><span class="line"><span class="function"><span class="params">                 <span class="keyword">void</span> *(*start_rtn)(<span class="keyword">void</span> *), <span class="comment">//线程运行函数的起始地址</span></span></span></span><br><span class="line"><span class="function"><span class="params">                 <span class="keyword">void</span> *<span class="keyword">restrict</span> arg <span class="comment">//运行函数的参数。</span></span></span></span><br><span class="line"><span class="function"><span class="params">                  )</span></span>;</span><br></pre></td></tr></table></figure>
@@ -142,6 +119,30 @@
 ]]></content>
       <tags>
         <tag>OS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>模型评估与选择</title>
+    <url>/2021/03/29/%E6%A8%A1%E5%9E%8B%E9%80%89%E6%8B%A9%E4%B8%8E%E9%AA%8C%E8%AF%81/</url>
+    <content><![CDATA[<h1 id="经验误差与过拟合"><a href="#经验误差与过拟合" class="headerlink" title="经验误差与过拟合"></a>经验误差与过拟合</h1><p>训练集上的误差称为“训练误差”(training error),经验误差(empirical error).</p>
+<p>新样本上的误差称为“泛化误差”（generalization error)</p>
+<h2 id="欠拟合"><a href="#欠拟合" class="headerlink" title="欠拟合"></a>欠拟合</h2><p>对训练样本的一般特质尚未学习完全</p>
+<p><strong>造成原因：</strong></p>
+<ul>
+<li><p>学习能力低下</p>
+</li>
+<li></li>
+</ul>
+<h2 id="过拟合"><a href="#过拟合" class="headerlink" title="过拟合"></a>过拟合</h2><p>误把训练样本的一些自身特性当作潜在规律。</p>
+<p><strong>造成原因：</strong></p>
+<ul>
+<li>学习能力过于强大</li>
+<li></li>
+</ul>
+<h1 id="模型评估方法"><a href="#模型评估方法" class="headerlink" title="模型评估方法"></a>模型评估方法</h1><h2 id="留出法"><a href="#留出法" class="headerlink" title="留出法"></a>留出法</h2><h2 id="交叉验证法"><a href="#交叉验证法" class="headerlink" title="交叉验证法"></a>交叉验证法</h2><h2 id="自助法"><a href="#自助法" class="headerlink" title="自助法"></a>自助法</h2>]]></content>
+      <tags>
+        <tag>西瓜书</tag>
+        <tag>机器学习</tag>
       </tags>
   </entry>
 </search>
