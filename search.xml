@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Training Model</title>
+    <url>/2021/04/18/Training%20Model/</url>
+    <content><![CDATA[]]></content>
+      <tags>
+        <tag>handson-ml</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Modelselection</title>
     <url>/2021/04/11/Modelselection/</url>
     <content><![CDATA[<h1 id="Measuring-Accuracy-Using-Cross-Validation"><a href="#Measuring-Accuracy-Using-Cross-Validation" class="headerlink" title="Measuring Accuracy Using Cross-Validation"></a>Measuring Accuracy Using Cross-Validation</h1><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> cross_val_score </span><br><span class="line">cross_val_score(sgd_clf, X_train, y_train_5, cv=<span class="number">3</span>, scoring=<span class="string">&quot;accuracy&quot;</span>)</span><br><span class="line"></span><br><span class="line">array([<span class="number">0.96355</span>, <span class="number">0.93795</span>, <span class="number">0.95615</span>])</span><br></pre></td></tr></table></figure>
@@ -21,14 +29,6 @@
       <tags>
         <tag>sklearn</tag>
         <tag>ML</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>模型训练</title>
-    <url>/2021/04/18/Training%20Model/</url>
-    <content><![CDATA[]]></content>
-      <tags>
-        <tag>handson-ml</tag>
       </tags>
   </entry>
   <entry>
@@ -63,6 +63,35 @@
 ]]></content>
   </entry>
   <entry>
+    <title>photo</title>
+    <url>/2021/04/18/photo/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
+    <title>模型评估与选择</title>
+    <url>/2021/03/29/%E6%A8%A1%E5%9E%8B%E9%80%89%E6%8B%A9%E4%B8%8E%E9%AA%8C%E8%AF%81/</url>
+    <content><![CDATA[<h1 id="经验误差与过拟合"><a href="#经验误差与过拟合" class="headerlink" title="经验误差与过拟合"></a>经验误差与过拟合</h1><p>训练集上的误差称为“训练误差”(training error),经验误差(empirical error).</p>
+<p>新样本上的误差称为“泛化误差”（generalization error)</p>
+<h2 id="欠拟合"><a href="#欠拟合" class="headerlink" title="欠拟合"></a>欠拟合</h2><p>对训练样本的一般特质尚未学习完全</p>
+<p><strong>造成原因：</strong></p>
+<ul>
+<li><p>学习能力低下</p>
+</li>
+<li></li>
+</ul>
+<h2 id="过拟合"><a href="#过拟合" class="headerlink" title="过拟合"></a>过拟合</h2><p>误把训练样本的一些自身特性当作潜在规律。</p>
+<p><strong>造成原因：</strong></p>
+<ul>
+<li>学习能力过于强大</li>
+<li></li>
+</ul>
+<h1 id="模型评估方法"><a href="#模型评估方法" class="headerlink" title="模型评估方法"></a>模型评估方法</h1><h2 id="留出法"><a href="#留出法" class="headerlink" title="留出法"></a>留出法</h2><h2 id="交叉验证法"><a href="#交叉验证法" class="headerlink" title="交叉验证法"></a>交叉验证法</h2><h2 id="自助法"><a href="#自助法" class="headerlink" title="自助法"></a>自助法</h2>]]></content>
+      <tags>
+        <tag>西瓜书</tag>
+        <tag>机器学习</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>线程相关函数</title>
     <url>/2021/03/27/%E7%BA%BF%E7%A8%8B%E7%9B%B8%E5%85%B3%E5%87%BD%E6%95%B0/</url>
     <content><![CDATA[<h1 id="pthread-create"><a href="#pthread-create" class="headerlink" title="pthread_create"></a>pthread_create</h1><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;pthread.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">pthread_create</span><span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">                 <span class="keyword">pthread_t</span> *<span class="keyword">restrict</span> tidp,   <span class="comment">//指向线程标识符的指针。</span></span></span></span><br><span class="line"><span class="function"><span class="params">                 <span class="keyword">const</span> <span class="keyword">pthread_attr_t</span> *<span class="keyword">restrict</span> attr,  <span class="comment">//线程属性，默认为NULL</span></span></span></span><br><span class="line"><span class="function"><span class="params">                 <span class="keyword">void</span> *(*start_rtn)(<span class="keyword">void</span> *), <span class="comment">//线程运行函数的起始地址</span></span></span></span><br><span class="line"><span class="function"><span class="params">                 <span class="keyword">void</span> *<span class="keyword">restrict</span> arg <span class="comment">//运行函数的参数。</span></span></span></span><br><span class="line"><span class="function"><span class="params">                  )</span></span>;</span><br></pre></td></tr></table></figure>
@@ -92,30 +121,6 @@
       </tags>
   </entry>
   <entry>
-    <title>模型评估与选择</title>
-    <url>/2021/03/29/%E6%A8%A1%E5%9E%8B%E9%80%89%E6%8B%A9%E4%B8%8E%E9%AA%8C%E8%AF%81/</url>
-    <content><![CDATA[<h1 id="经验误差与过拟合"><a href="#经验误差与过拟合" class="headerlink" title="经验误差与过拟合"></a>经验误差与过拟合</h1><p>训练集上的误差称为“训练误差”(training error),经验误差(empirical error).</p>
-<p>新样本上的误差称为“泛化误差”（generalization error)</p>
-<h2 id="欠拟合"><a href="#欠拟合" class="headerlink" title="欠拟合"></a>欠拟合</h2><p>对训练样本的一般特质尚未学习完全</p>
-<p><strong>造成原因：</strong></p>
-<ul>
-<li><p>学习能力低下</p>
-</li>
-<li></li>
-</ul>
-<h2 id="过拟合"><a href="#过拟合" class="headerlink" title="过拟合"></a>过拟合</h2><p>误把训练样本的一些自身特性当作潜在规律。</p>
-<p><strong>造成原因：</strong></p>
-<ul>
-<li>学习能力过于强大</li>
-<li></li>
-</ul>
-<h1 id="模型评估方法"><a href="#模型评估方法" class="headerlink" title="模型评估方法"></a>模型评估方法</h1><h2 id="留出法"><a href="#留出法" class="headerlink" title="留出法"></a>留出法</h2><h2 id="交叉验证法"><a href="#交叉验证法" class="headerlink" title="交叉验证法"></a>交叉验证法</h2><h2 id="自助法"><a href="#自助法" class="headerlink" title="自助法"></a>自助法</h2>]]></content>
-      <tags>
-        <tag>西瓜书</tag>
-        <tag>机器学习</tag>
-      </tags>
-  </entry>
-  <entry>
     <title></title>
     <url>/2021/03/28/demo/%E5%AE%9E%E9%AA%8C%E8%AF%B4%E6%98%8E/</url>
     <content><![CDATA[<h1 id="实验说明"><a href="#实验说明" class="headerlink" title="实验说明"></a>实验说明</h1><h2 id="实验目的"><a href="#实验目的" class="headerlink" title="实验目的"></a>实验目的</h2><p>掌握线性回归模型，并应用于实际问题，根据给定的性能度量对预测结果进行分析。</p>
@@ -132,8 +137,8 @@
 <p>均方误差越小，预测结果越准确。</p>
 <h1 id="实验结果及分析"><a href="#实验结果及分析" class="headerlink" title="实验结果及分析"></a>实验结果及分析</h1><h2 id="数据预处理的选择"><a href="#数据预处理的选择" class="headerlink" title="数据预处理的选择"></a>数据预处理的选择</h2><p>采用原始数据进行线性回归预测：</p>
 <p>得到的均方误差为：</p>
-<p><img src="D:\Python\ML_homework\Projects\Project1\Project1\before_normalization.png" alt="归一化处理前"></p>
-<p>对连续值属性进行0-1归一化（0-1 normalization）处理后：<br>$$<br>x=\frac{x-x_{min}}{x_{max}-x_{min}}<br>$$<br>再将预测值还原，得到的均方误差为：<img src="D:\Python\ML_homework\Projects\Project1\Project1\after_normalization.png"></p>
+<p><img src="/2021/03/28/demo/%E5%AE%9E%E9%AA%8C%E8%AF%B4%E6%98%8E/Python\ML_homework\Projects\Project1\Project1\before_normalization.png" alt="归一化处理前"></p>
+<p>对连续值属性进行0-1归一化（0-1 normalization）处理后：<br>$$<br>x=\frac{x-x_{min}}{x_{max}-x_{min}}<br>$$<br>再将预测值还原，得到的均方误差为：<img src="/2021/03/28/demo/%E5%AE%9E%E9%AA%8C%E8%AF%B4%E6%98%8E/Python\ML_homework\Projects\Project1\Project1\after_normalization.png"></p>
 <p>可以发现归一化后的误差略大于原始数据，故预处理可能是不必要的，直接使用原始数据进行线性回归即可。</p>
 <p><strong>分析：</strong></p>
 <p>归一化在线性回归（最小二乘法，非梯度下降）中只是引入了一个线性伸缩变换，应与变换前误差一致，而归一化可能会造成相关属性的精度丢失，造成了额外的误差。</p>
