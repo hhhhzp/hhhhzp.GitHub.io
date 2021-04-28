@@ -23,14 +23,6 @@ recall=\frac{TP}{TP+FN}</script><figure class="highlight python"><table><tr><td 
       </tags>
   </entry>
   <entry>
-    <title>Training Model</title>
-    <url>/2021/04/18/Training%20Model/</url>
-    <content><![CDATA[]]></content>
-      <tags>
-        <tag>handson-ml</tag>
-      </tags>
-  </entry>
-  <entry>
     <title></title>
     <url>/2021/03/24/Pandas%E4%BD%BF%E7%94%A8/</url>
     <content><![CDATA[<hr>
@@ -78,6 +70,14 @@ recall=\frac{TP}{TP+FN}</script><figure class="highlight python"><table><tr><td 
       <tags>
         <tag>西瓜书</tag>
         <tag>机器学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Training Model</title>
+    <url>/2021/04/18/Training%20Model/</url>
+    <content><![CDATA[]]></content>
+      <tags>
+        <tag>handson-ml</tag>
       </tags>
   </entry>
   <entry>
