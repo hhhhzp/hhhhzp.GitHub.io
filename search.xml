@@ -23,6 +23,14 @@ recall=\frac{TP}{TP+FN}</script><figure class="highlight python"><table><tr><td 
       </tags>
   </entry>
   <entry>
+    <title>Training Model</title>
+    <url>/2021/04/18/Training%20Model/</url>
+    <content><![CDATA[]]></content>
+      <tags>
+        <tag>handson-ml</tag>
+      </tags>
+  </entry>
+  <entry>
     <title></title>
     <url>/2021/03/24/Pandas%E4%BD%BF%E7%94%A8/</url>
     <content><![CDATA[<hr>
@@ -47,14 +55,6 @@ recall=\frac{TP}{TP+FN}</script><figure class="highlight python"><table><tr><td 
 <h2 id="DataFrame基本操作"><a href="#DataFrame基本操作" class="headerlink" title="DataFrame基本操作"></a>DataFrame基本操作</h2><h3 id="汇总函数"><a href="#汇总函数" class="headerlink" title="汇总函数"></a>汇总函数</h3><p><strong>截断</strong><br><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">返回表或者序列的前n行，默认参数为<span class="number">5</span></span><br><span class="line">df.head(n)</span><br><span class="line">返回表或者序列的后n行，默认参数为<span class="number">5</span></span><br><span class="line">df.tail(n)</span><br></pre></td></tr></table></figure><br><strong>基本信息</strong></p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">df.info()</span><br><span class="line">df.describe()</span><br></pre></td></tr></table></figure>
 ]]></content>
-  </entry>
-  <entry>
-    <title>Training Model</title>
-    <url>/2021/04/18/Training%20Model/</url>
-    <content><![CDATA[]]></content>
-      <tags>
-        <tag>handson-ml</tag>
-      </tags>
   </entry>
   <entry>
     <title>模型评估与选择</title>
