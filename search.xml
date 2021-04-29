@@ -23,11 +23,41 @@ recall=\frac{TP}{TP+FN}</script><figure class="highlight python"><table><tr><td 
       </tags>
   </entry>
   <entry>
-    <title>Training Model</title>
-    <url>/2021/04/18/Training%20Model/</url>
-    <content><![CDATA[]]></content>
+    <title>PCA</title>
+    <url>/2021/04/29/PCA/</url>
+    <content><![CDATA[<h1 id="主成分分析（Principal-Component-Analysis-）"><a href="#主成分分析（Principal-Component-Analysis-）" class="headerlink" title="主成分分析（Principal Component Analysis ）"></a>主成分分析（Principal Component Analysis ）</h1><h2 id="算法原理"><a href="#算法原理" class="headerlink" title="算法原理"></a>算法原理</h2><p>数据集$D=\{x_i|i=0,1,…,n\}$，每个数据点有$d$维数据</p>
+<p>我们用一条过样本均值点$\mu=\frac{1}{n}\Sigma_{i=1}^{n}x_i$的直线来表示重构之后的$\hat{x}_k$:</p>
+<script type="math/tex; mode=display">
+\hat{x}_k=\mu+a_ke</script><p>其中e为单位向量。</p>
+<p>为了最小化重构误差，即最小化投影所带来的损失：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+J_1(a_1,a_2,...a_n,e)&=||\hat{x}_k-x_k||_2^2\\
+&=||\mu+a_ke-x_k||_2^2\\
+&=\Sigma_{i=1}^{n}a_k^2-2\Sigma_{i=1}^{n}a_ke^t(x_k-\mu)+\Sigma_{i=1}^{n}||x_k-\mu||_2^2
+\end{aligned}</script><script type="math/tex; mode=display">
+\frac{\partial J_1}{\partial e}=2a_k-e^t(x_k-\mu)</script><p>得到：</p>
+<script type="math/tex; mode=display">
+a_k=e^t(x_k-\mu)</script><p>再将这个式子带回loss函数：</p>
+<script type="math/tex; mode=display">
+J_1(e)=-\Sigma_{i=1}^{n}e^t(x_k-\mu)(x_k-\mu)^Te+\Sigma_{i=1}^{n}||x_k-\mu||_2^2</script><p>令</p>
+<script type="math/tex; mode=display">
+S=\Sigma_{i=1}^{n}(x_k-\mu)(x_k-\mu)^T</script><p>矩阵S被称作“散布矩阵”。</p>
+<script type="math/tex; mode=display">
+J_1(e)=-e^tSe+\Sigma_{i=1}^{n}||x_k-\mu||_2^2</script><p>继续用拉格朗日乘子法来最大化$e^tSe$：</p>
+<script type="math/tex; mode=display">
+u=e^tSe-\lambda(e^te-1)</script><script type="math/tex; mode=display">
+\frac{\partial u}{\partial e}=2Se-2\lambda e=0</script><p>很容易看出这里的$\lambda$就是散布矩阵的特征值，且按照优化函数来看，这里的特征值应当取最大的，e就是其对应的特征向量。</p>
+<p>我们再把一维的$a_k$拓展到$d^{‘}$维，将$x_k$表示维$y_k=(a_{k1},a_{k2},…,a_{kd^{‘}})^T$</p>
+<p>同理前面降维至一维的思路，只不过这一次需要将特征值排序，选前$d^{‘}$个最大的特征值。</p>
+<h2 id="如何选择-d-‘"><a href="#如何选择-d-‘" class="headerlink" title="如何选择$d^{‘}$"></a>如何选择$d^{‘}$</h2><p>如果所需保留原来$m\%$信息,则需要找到最小满足条件的$d^{‘}$,使得：</p>
+<script type="math/tex; mode=display">
+\frac{\Sigma_{i=1}^{d^{'}}\lambda_i}{\Sigma\lambda_i}\geq m\%</script><p>即可。</p>
+]]></content>
       <tags>
-        <tag>handson-ml</tag>
+        <tag>Machine Learning</tag>
+        <tag>Pattern Recognition</tag>
+        <tag>Dimensionality Reduction</tag>
       </tags>
   </entry>
   <entry>
@@ -55,6 +85,14 @@ recall=\frac{TP}{TP+FN}</script><figure class="highlight python"><table><tr><td 
 <h2 id="DataFrame基本操作"><a href="#DataFrame基本操作" class="headerlink" title="DataFrame基本操作"></a>DataFrame基本操作</h2><h3 id="汇总函数"><a href="#汇总函数" class="headerlink" title="汇总函数"></a>汇总函数</h3><p><strong>截断</strong><br><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">返回表或者序列的前n行，默认参数为<span class="number">5</span></span><br><span class="line">df.head(n)</span><br><span class="line">返回表或者序列的后n行，默认参数为<span class="number">5</span></span><br><span class="line">df.tail(n)</span><br></pre></td></tr></table></figure><br><strong>基本信息</strong></p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">df.info()</span><br><span class="line">df.describe()</span><br></pre></td></tr></table></figure>
 ]]></content>
+  </entry>
+  <entry>
+    <title>Training Model</title>
+    <url>/2021/04/18/Training%20Model/</url>
+    <content><![CDATA[]]></content>
+      <tags>
+        <tag>handson-ml</tag>
+      </tags>
   </entry>
   <entry>
     <title>模型评估与选择</title>
