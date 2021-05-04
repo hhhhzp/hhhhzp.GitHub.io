@@ -20,17 +20,24 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="个人空间">
-<meta property="og:type" content="website">
-<meta property="og:title" content="hzp的博客">
-<meta property="og:url" content="http://example.com/archives/2021/index.html">
+  <meta name="description" content="线性判别分析(Linear Discriminant Analysis)算法目的找到易于将数据有效分类的最有效投影方式。  算法描述核心：减小类内差异，增大类间差异。 以二分类为例子。 给定条件如下： $D&#x3D;\{x_i\}_{i&#x3D;1}^{n}$，其中$x_i&#x3D;(x_i^{(1)};x_i^{(2)};…x_i^{(d)})$ $D_1&#x3D;\{x_i|x_i \in w_1\}$ $D_2&#x3D;\{x_i">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LDA">
+<meta property="og:url" content="http://example.com/2021/05/04/LDA/index.html">
 <meta property="og:site_name" content="hzp的博客">
-<meta property="og:description" content="个人空间">
+<meta property="og:description" content="线性判别分析(Linear Discriminant Analysis)算法目的找到易于将数据有效分类的最有效投影方式。  算法描述核心：减小类内差异，增大类间差异。 以二分类为例子。 给定条件如下： $D&#x3D;\{x_i\}_{i&#x3D;1}^{n}$，其中$x_i&#x3D;(x_i^{(1)};x_i^{(2)};…x_i^{(d)})$ $D_1&#x3D;\{x_i|x_i \in w_1\}$ $D_2&#x3D;\{x_i">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="d:/Python/Notes/source/_posts/LDA/图片1.png">
+<meta property="article:published_time" content="2021-05-04T06:39:48.000Z">
+<meta property="article:modified_time" content="2021-05-04T07:39:27.445Z">
 <meta property="article:author" content="hzp">
+<meta property="article:tag" content="Machine Learning">
+<meta property="article:tag" content="Pattern Recognition">
+<meta property="article:tag" content="Dimensionality Reduction">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="d:/Python/Notes/source/_posts/LDA/图片1.png">
 
-<link rel="canonical" href="http://example.com/archives/2021/">
+<link rel="canonical" href="http://example.com/2021/05/04/LDA/">
 
 
 <script id="page-configurations">
@@ -38,12 +45,12 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>归档 | hzp的博客</title>
+  <title>LDA | hzp的博客</title>
   
 
 
@@ -193,170 +200,122 @@
         <div class="content-wrap">
           
 
-          <div class="content archive">
+          <div class="content post posts-expand">
             
 
+    
   
   
-  
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
-        <span class="collection-header">嗯..! 目前共计 7 篇日志。 继续努力。</span>
-      </div>
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/05/04/LDA/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/profile.jpg">
+      <meta itemprop="name" content="hzp">
+      <meta itemprop="description" content="个人空间">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="hzp的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          LDA
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-05-04 14:39:48 / 修改时间：15:39:27" itemprop="dateCreated datePublished" datetime="2021-05-04T14:39:48+08:00">2021-05-04</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    <div class="collection-year">
-      <span class="collection-header">2021</span>
-    </div>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-05-04T14:39:48+08:00"
-              content="2021-05-04">
-          05-04
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/05/04/LDA/" itemprop="url">
-            <span itemprop="name">LDA</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-04-29T17:39:41+08:00"
-              content="2021-04-29">
-          04-29
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/04/29/PCA/" itemprop="url">
-            <span itemprop="name">PCA</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-04-18T15:53:16+08:00"
-              content="2021-04-18">
-          04-18
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/04/18/Training%20Model/" itemprop="url">
-            <span itemprop="name">Training Model</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-04-11T10:24:36+08:00"
-              content="2021-04-11">
-          04-11
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/04/11/Modelselection/" itemprop="url">
-            <span itemprop="name">Modelselection</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-03-29T17:08:03+08:00"
-              content="2021-03-29">
-          03-29
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/03/29/%E6%A8%A1%E5%9E%8B%E9%80%89%E6%8B%A9%E4%B8%8E%E9%AA%8C%E8%AF%81/" itemprop="url">
-            <span itemprop="name">模型评估与选择</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-03-27T11:14:15+08:00"
-              content="2021-03-27">
-          03-27
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/03/27/%E7%BA%BF%E7%A8%8B%E7%9B%B8%E5%85%B3%E5%87%BD%E6%95%B0/" itemprop="url">
-            <span itemprop="name">线程相关函数</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-03-24T20:29:28+08:00"
-              content="2021-03-24">
-          03-24
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/03/24/Pandas%E4%BD%BF%E7%94%A8/" itemprop="url">
-            <span itemprop="name">未命名</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
+        <h1 id="线性判别分析-Linear-Discriminant-Analysis"><a href="#线性判别分析-Linear-Discriminant-Analysis" class="headerlink" title="线性判别分析(Linear Discriminant Analysis)"></a>线性判别分析(Linear Discriminant Analysis)</h1><h2 id="算法目的"><a href="#算法目的" class="headerlink" title="算法目的"></a>算法目的</h2><p>找到易于将数据有效分类的最有效投影方式。</p>
+<p><img src="D:\Python\Notes\source\_posts\LDA\图片1.png" alt=""></p>
+<h2 id="算法描述"><a href="#算法描述" class="headerlink" title="算法描述"></a>算法描述</h2><p><strong>核心：减小类内差异，增大类间差异。</strong></p>
+<p>以二分类为例子。</p>
+<p>给定条件如下：</p>
+<p>$D=\{x_i\}_{i=1}^{n}$，其中$x_i=(x_i^{(1)};x_i^{(2)};…x_i^{(d)})$</p>
+<p>$D_1=\{x_i|x_i \in w_1\}$</p>
+<p>$D_2=\{x_i|x_i \in w_2\}$</p>
+<p><strong>样本中心：</strong></p>
+<p>$m_i=\frac{1}{|D_i|}\Sigma_{x\in D_i}x$</p>
+<p><strong>投影之后：</strong></p>
+<p>$y=w^Tx$</p>
+<p>$\hat m_i=\frac{1}{|D_i|}\Sigma_{x\in D_i}y=\frac{1}{|D_i|}\Sigma_{x\in D_i}w^Tx=w^Tm_i$</p>
+<p><strong>类间散度矩阵：</strong></p>
+<p>$S_B=(m_1-m_2)(m_1-m_2)^T$</p>
+<p><strong>类间差异描述</strong>：</p>
+<p>$|\hat m_1-\hat m_2|^2=|w^T(m_1-m_2)|^2$</p>
+<p>$<del>~</del><del>~</del><del>~</del><del>~</del>=w^T(m_1-m_2)(m_1-m_2)^Tw$</p>
+<p>$<del>~</del><del>~</del><del>~</del><del>~</del>=w^TS_Bw$</p>
+<p><strong>类内散度矩阵：</strong></p>
+<p>$S_i=\Sigma_{x \in D_i}(x-m_i)(x-m_i)^T$</p>
+<p><strong>类内差异描述</strong>：</p>
+<p>$\hat s_i=\Sigma_{x\in D_i}(y-\hat m_i)^2$</p>
+<p>$~~~~=\Sigma_{x\in D_i}(w^Tx-w^Tm_i)^2$</p>
+<p>$~~~~=\Sigma_{x\in D_i}w^T(x-w^Tm_i)(x-w^Tm_i)^Tw$</p>
+<p>$~~~~=w^TS_iw$</p>
+<p>再令：</p>
+<p>$S_w=S_1+S_2$</p>
+<p>需要同时满足核心目标，则将<strong>Fisher criterion function</strong>定义为：</p>
+<script type="math/tex; mode=display">
+J(w)=\frac{|\hat m_1-\hat m_2|^2}{\hat s_1^2+\hat s_2^2}</script><p>基于上述式子，可将问题变形为：</p>
+<script type="math/tex; mode=display">
+J(w)=\frac{w^TS_Bw}{w^TS_ww}</script><p>注意到该式子与$w$的长度无关，只与其方向有关，不妨令$w^TS_ww=1$：</p>
+<p>由拉格朗日乘子法知,上式等价于：</p>
+<p>$S_bw=\lambda S_ww$</p>
+<p>注意到$S_Bw$的方向恒为$m_1-m_2$</p>
+<p>再令:</p>
+<p>$S_Bw=\lambda (m_1-m_2)$</p>
+<p>即得:</p>
+<p>$w=S_w^{-1}(m_1-m_2)$</p>
 
     </div>
-  </div>
-  
-  
-  
 
+    
+    
+    
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/Machine-Learning/" rel="tag"><i class="fa fa-tag"></i> Machine Learning</a>
+              <a href="/tags/Pattern-Recognition/" rel="tag"><i class="fa fa-tag"></i> Pattern Recognition</a>
+              <a href="/tags/Dimensionality-Reduction/" rel="tag"><i class="fa fa-tag"></i> Dimensionality Reduction</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/04/29/PCA/" rel="prev" title="PCA">
+      <i class="fa fa-chevron-left"></i> PCA
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
   
 
 
@@ -409,6 +368,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BA%BF%E6%80%A7%E5%88%A4%E5%88%AB%E5%88%86%E6%9E%90-Linear-Discriminant-Analysis"><span class="nav-number">1.</span> <span class="nav-text">线性判别分析(Linear Discriminant Analysis)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E7%9B%AE%E7%9A%84"><span class="nav-number">1.1.</span> <span class="nav-text">算法目的</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E6%8F%8F%E8%BF%B0"><span class="nav-number">1.2.</span> <span class="nav-text">算法描述</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -521,6 +481,61 @@
   
 
   
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 

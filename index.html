@@ -199,6 +199,104 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/05/04/LDA/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/profile.jpg">
+      <meta itemprop="name" content="hzp">
+      <meta itemprop="description" content="个人空间">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="hzp的博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/05/04/LDA/" class="post-title-link" itemprop="url">LDA</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-05-04 14:39:48 / 修改时间：15:39:27" itemprop="dateCreated datePublished" datetime="2021-05-04T14:39:48+08:00">2021-05-04</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="线性判别分析-Linear-Discriminant-Analysis"><a href="#线性判别分析-Linear-Discriminant-Analysis" class="headerlink" title="线性判别分析(Linear Discriminant Analysis)"></a>线性判别分析(Linear Discriminant Analysis)</h1><h2 id="算法目的"><a href="#算法目的" class="headerlink" title="算法目的"></a>算法目的</h2><p>找到易于将数据有效分类的最有效投影方式。</p>
+<p><img src="D:\Python\Notes\source\_posts\LDA\图片1.png" alt=""></p>
+<h2 id="算法描述"><a href="#算法描述" class="headerlink" title="算法描述"></a>算法描述</h2><p><strong>核心：减小类内差异，增大类间差异。</strong></p>
+<p>以二分类为例子。</p>
+<p>给定条件如下：</p>
+<p>$D=\{x_i\}_{i=1}^{n}$，其中$x_i=(x_i^{(1)};x_i^{(2)};…x_i^{(d)})$</p>
+<p>$D_1=\{x_i|x_i \in w_1\}$</p>
+<p>$D_2=\{x_i|x_i \in w_2\}$</p>
+<p><strong>样本中心：</strong></p>
+<p>$m_i=\frac{1}{|D_i|}\Sigma_{x\in D_i}x$</p>
+<p><strong>投影之后：</strong></p>
+<p>$y=w^Tx$</p>
+<p>$\hat m_i=\frac{1}{|D_i|}\Sigma_{x\in D_i}y=\frac{1}{|D_i|}\Sigma_{x\in D_i}w^Tx=w^Tm_i$</p>
+<p><strong>类间散度矩阵：</strong></p>
+<p>$S_B=(m_1-m_2)(m_1-m_2)^T$</p>
+<p><strong>类间差异描述</strong>：</p>
+<p>$|\hat m_1-\hat m_2|^2=|w^T(m_1-m_2)|^2$</p>
+<p>$<del>~</del><del>~</del><del>~</del><del>~</del>=w^T(m_1-m_2)(m_1-m_2)^Tw$</p>
+<p>$<del>~</del><del>~</del><del>~</del><del>~</del>=w^TS_Bw$</p>
+<p><strong>类内散度矩阵：</strong></p>
+<p>$S_i=\Sigma_{x \in D_i}(x-m_i)(x-m_i)^T$</p>
+<p><strong>类内差异描述</strong>：</p>
+<p>$\hat s_i=\Sigma_{x\in D_i}(y-\hat m_i)^2$</p>
+<p>$~~~~=\Sigma_{x\in D_i}(w^Tx-w^Tm_i)^2$</p>
+<p>$~~~~=\Sigma_{x\in D_i}w^T(x-w^Tm_i)(x-w^Tm_i)^Tw$</p>
+<p>$~~~~=w^TS_iw$</p>
+<p>再令：</p>
+<p>$S_w=S_1+S_2$</p>
+<p>需要同时满足核心目标，则将<strong>Fisher criterion function</strong>定义为：</p>
+<script type="math/tex; mode=display">
+J(w)=\frac{|\hat m_1-\hat m_2|^2}{\hat s_1^2+\hat s_2^2}</script><p>基于上述式子，可将问题变形为：</p>
+<script type="math/tex; mode=display">
+J(w)=\frac{w^TS_Bw}{w^TS_ww}</script><p>注意到该式子与$w$的长度无关，只与其方向有关，不妨令$w^TS_ww=1$：</p>
+<p>由拉格朗日乘子法知,上式等价于：</p>
+<p>$S_bw=\lambda S_ww$</p>
+<p>注意到$S_Bw$的方向恒为$m_1-m_2$</p>
+<p>再令:</p>
+<p>$S_Bw=\lambda (m_1-m_2)$</p>
+<p>即得:</p>
+<p>$w=S_w^{-1}(m_1-m_2)$</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2021/04/29/PCA/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -222,10 +320,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2021-04-29 17:39:41 / 修改时间：17:47:38" itemprop="dateCreated datePublished" datetime="2021-04-29T17:39:41+08:00">2021-04-29</time>
+              <time title="创建时间：2021-04-29 17:39:41" itemprop="dateCreated datePublished" datetime="2021-04-29T17:39:41+08:00">2021-04-29</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-05-04 14:42:33" itemprop="dateModified" datetime="2021-05-04T14:42:33+08:00">2021-05-04</time>
+              </span>
 
           
 
@@ -238,7 +342,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="主成分分析（Principal-Component-Analysis-）"><a href="#主成分分析（Principal-Component-Analysis-）" class="headerlink" title="主成分分析（Principal Component Analysis ）"></a>主成分分析（Principal Component Analysis ）</h1><h2 id="算法原理"><a href="#算法原理" class="headerlink" title="算法原理"></a>算法原理</h2><p>数据集$D=\{x_i|i=0,1,…,n\}$，每个数据点有$d$维数据</p>
+          <h1 id="主成分分析（Principal-Component-Analysis-）"><a href="#主成分分析（Principal-Component-Analysis-）" class="headerlink" title="主成分分析（Principal Component Analysis ）"></a>主成分分析（Principal Component Analysis ）</h1><h2 id="算法目的"><a href="#算法目的" class="headerlink" title="算法目的"></a>算法目的</h2><p>在冗杂的特征维度中，提取有效信息，解决维数灾难问题。</p>
+<h2 id="算法原理"><a href="#算法原理" class="headerlink" title="算法原理"></a>算法原理</h2><p>数据集$D=\{x_i|i=0,1,…,n\}$，每个数据点有$d$维数据</p>
 <p>我们用一条过样本均值点$\mu=\frac{1}{n}\Sigma_{i=1}^{n}x_i$的直线来表示重构之后的$\hat{x}_k$:</p>
 <script type="math/tex; mode=display">
 \hat{x}_k=\mu+a_ke</script><p>其中e为单位向量。</p>
@@ -715,7 +820,7 @@ recall=\frac{TP}{TP+FN}</script><figure class="highlight python"><table><tr><td 
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">6</span>
+          <span class="site-state-item-count">7</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
