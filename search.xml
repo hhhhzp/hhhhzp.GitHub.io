@@ -8,30 +8,47 @@
 <h2 id="算法描述"><a href="#算法描述" class="headerlink" title="算法描述"></a>算法描述</h2><p><strong>核心：减小类内差异，增大类间差异。</strong></p>
 <p>以二分类为例子。</p>
 <p>给定条件如下：</p>
-<p>$D=\{x_i\}_{i=1}^{n}$，其中$x_i=(x_i^{(1)};x_i^{(2)};…x_i^{(d)})$</p>
-<p>$D_1=\{x_i|x_i \in w_1\}$</p>
-<p>$D_2=\{x_i|x_i \in w_2\}$</p>
-<p><strong>样本中心：</strong></p>
-<p>$m_i=\frac{1}{|D_i|}\Sigma_{x\in D_i}x$</p>
-<p><strong>投影之后：</strong></p>
-<p>$y=w^Tx$</p>
-<p>$\hat m_i=\frac{1}{|D_i|}\Sigma_{x\in D_i}y=\frac{1}{|D_i|}\Sigma_{x\in D_i}w^Tx=w^Tm_i$</p>
-<p><strong>类间散度矩阵：</strong></p>
-<p>$S_B=(m_1-m_2)(m_1-m_2)^T$</p>
-<p><strong>类间差异描述</strong>：</p>
-<p>$|\hat m_1-\hat m_2|^2=|w^T(m_1-m_2)|^2$</p>
-<p>$<del>~</del><del>~</del><del>~</del><del>~</del>=w^T(m_1-m_2)(m_1-m_2)^Tw$</p>
-<p>$<del>~</del><del>~</del><del>~</del><del>~</del>=w^TS_Bw$</p>
-<p><strong>类内散度矩阵：</strong></p>
-<p>$S_i=\Sigma_{x \in D_i}(x-m_i)(x-m_i)^T$</p>
-<p><strong>类内差异描述</strong>：</p>
-<p>$\hat s_i=\Sigma_{x\in D_i}(y-\hat m_i)^2$</p>
-<p>$~~~~=\Sigma_{x\in D_i}(w^Tx-w^Tm_i)^2$</p>
-<p>$~~~~=\Sigma_{x\in D_i}w^T(x-w^Tm_i)(x-w^Tm_i)^Tw$</p>
-<p>$~~~~=w^TS_iw$</p>
-<p>再令：</p>
-<p>$S_w=S_1+S_2$</p>
-<p>需要同时满足核心目标，则将<strong>Fisher criterion function</strong>定义为：</p>
+<script type="math/tex; mode=display">
+D=\{x_i\}_{i=1}^{n},x_i=(x_i^{(1)};x_i^{(2)};...x_i^{(d)})\\
+
+D_1=\{x_i|x_i \in w_1\}\\
+
+D_2=\{x_i|x_i \in w_2\}</script><p><strong>样本中心：</strong></p>
+<script type="math/tex; mode=display">
+m_i=\frac{1}{|D_i|}\Sigma_{x\in D_i}x</script><p><strong>投影之后：</strong></p>
+<script type="math/tex; mode=display">
+y=w^Tx\\</script><script type="math/tex; mode=display">
+\hat m_i=\frac{1}{|D_i|}\Sigma_{x\in D_i}y=\frac{1}{|D_i|}\Sigma_{x\in D_i}\\w^Tx=w^Tm_i</script><p><strong>类间散度矩阵：</strong></p>
+<script type="math/tex; mode=display">
+S_B=(m_1-m_2)(m_1-m_2)^T</script><p><strong>类间差异描述</strong>：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+|\hat m_1-\hat m_2|^2&=|w^T(m_1-m_2)|^2\\
+
+&=w^T(m_1-m_2)(m_1-m_2)^Tw\\
+
+&=w^TS_Bw
+\end{aligned}</script><script type="math/tex; mode=display">
+\begin{aligned}
+|\hat m_1-\hat m_2|^2&=|w^T(m_1-m_2)|^2\\
+
+&=w^T(m_1-m_2)(m_1-m_2)^Tw\\
+
+&=w^TS_Bw
+\end{aligned}</script><p><strong>类内散度矩阵：</strong></p>
+<script type="math/tex; mode=display">
+S_i=\Sigma_{x \in D_i}(x-m_i)(x-m_i)^T</script><p><strong>类内差异描述</strong>：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\hat s_i&=\Sigma_{x\in D_i}(y-\hat m_i)^2\\
+
+&=\Sigma_{x\in D_i}(w^Tx-w^Tm_i)^2\\
+
+&=\Sigma_{x\in D_i}w^T(x-w^Tm_i)(x-w^Tm_i)^Tw\\
+&=w^TS_iw\\
+\end{aligned}</script><p>再令：</p>
+<script type="math/tex; mode=display">
+S_w=S_1+S_2</script><p>需要同时满足核心目标，则将<strong>Fisher criterion function</strong>定义为：</p>
 <script type="math/tex; mode=display">
 J(w)=\frac{|\hat m_1-\hat m_2|^2}{\hat s_1^2+\hat s_2^2}</script><p>基于上述式子，可将问题变形为：</p>
 <script type="math/tex; mode=display">
@@ -43,38 +60,26 @@ J(w)=\frac{w^TS_Bw}{w^TS_ww}</script><p>注意到该式子与$w$的长度无关�
 <p>$S_Bw=\lambda (m_1-m_2)$</p>
 <p>即得:</p>
 <p>$w=S_w^{-1}(m_1-m_2)$</p>
+<p><strong>扩展到c类的线性判别函数：</strong></p>
+<p>此时问题变为：</p>
+<script type="math/tex; mode=display">
+J(W)=\frac{W^TS_BW}{W^TS_wW},W \in R^{d*n}</script><p>其中$d \in \{i|1\le i \le c-1\}$,下面来解释$d$值域的由来：</p>
+<p>与二类一样，本质上我们需要解的问题为：</p>
+<script type="math/tex; mode=display">
+S_bW=\lambda S_wW</script><script type="math/tex; mode=display">
+S_w^{-1}S_bW=\lambda W</script><p>$S_B=\Sigma_{i=1}^{c}|D_i|(m_i-m)(m_i-m)^T$</p>
+<p>$r((m_i-m)(m_i-m)^T)\le 1$,$c$个秩小于$1$的矩阵加和，同时其中只有$c-1$个相互独立的矩阵。</p>
+<p>因此$r(S_B)\le c-1$,$r(S_w^{-1}S_b)\le c-1,$只有最多$c-1$个非零特征值，对应的特征向量也最多只有$c-1$个。</p>
+<h2 id="对比：-PCA-and-LDA"><a href="#对比：-PCA-and-LDA" class="headerlink" title="对比： PCA and LDA"></a>对比： PCA and LDA</h2><p>经过一系列计算，最终我们想要做的操作基本一致,通过：</p>
+<script type="math/tex; mode=display">
+y=Wx</script><p>进行投影。</p>
+<p>由于<strong>PCA</strong>在原来对所有的样本有过<strong>中心化</strong>的操作，所以运算之后还需要<strong>去中心化</strong>，而LDA则不需要。</p>
 ]]></content>
       <tags>
         <tag>Machine Learning</tag>
         <tag>Pattern Recognition</tag>
         <tag>Dimensionality Reduction</tag>
       </tags>
-  </entry>
-  <entry>
-    <title></title>
-    <url>/2021/03/24/Pandas%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<hr>
-<h2 id="Pandas使用"><a href="#Pandas使用" class="headerlink" title="Pandas使用"></a>Pandas使用</h2><p><strong>一般约定：</strong></p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br></pre></td></tr></table></figure>
-<h1 id="对pandas库的理解"><a href="#对pandas库的理解" class="headerlink" title="对pandas库的理解"></a>对pandas库的理解</h1><ul>
-<li>两个基本数据类型：<strong>Series</strong>,<strong>DataFrame</strong></li>
-<li><strong>Series</strong>提供一维数据类型</li>
-<li><strong>DataFrame</strong>提供高维数据类型</li>
-</ul>
-<span id="more"></span>
-<h1 id="Series类型"><a href="#Series类型" class="headerlink" title="Series类型"></a>Series类型</h1><p>由一组数据及其索引构成。<br><strong>成员：</strong></p>
-<ul>
-<li><strong>index</strong>，索引</li>
-<li><strong>values</strong>，数据，ndarray类型</li>
-</ul>
-<p>既有自定义索引，又有如同数组的索引。<br><strong>创建方法：</strong><br><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">列表创建</span><br><span class="line">pd.series(<span class="built_in">list</span>,index=<span class="built_in">list</span>)</span><br><span class="line">数组创建</span><br><span class="line">pd.series(ndarray,index=ndarray)</span><br><span class="line">标量创建</span><br><span class="line">pd.series(data,index=<span class="built_in">list</span>)</span><br><span class="line">Python字典创建</span><br><span class="line">pd.series(<span class="built_in">dict</span>)</span><br><span class="line">也可以通过index将先后顺序重新排序：</span><br><span class="line">pd.series(<span class="built_in">dict</span>，index=<span class="built_in">list</span>)</span><br></pre></td></tr></table></figure></p>
-<h2 id="Series基本操作"><a href="#Series基本操作" class="headerlink" title="Series基本操作"></a>Series基本操作</h2><p><strong>基本操作与数组和字典类似。</strong><br> <strong>name属性：</strong><br> <strong>series</strong>存在<strong>name</strong>成员，可以对这个序列命名。<br><strong>index</strong>,<strong>values</strong>也都存在<strong>name</strong>成员，打印的时候可以显示在表头</p>
-<h3 id="对齐操作"><a href="#对齐操作" class="headerlink" title="对齐操作"></a>对齐操作</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">当出现series+series之类运算，会采用索引对齐相加，生成新的series。</span><br></pre></td></tr></table></figure>
-<h1 id="DataFrame"><a href="#DataFrame" class="headerlink" title="DataFrame"></a>DataFrame</h1><p>共用相同索引的多条列组成，类似表格。<br><strong>成员：</strong></p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">df.columns</span><br></pre></td></tr></table></figure>
-<h2 id="DataFrame基本操作"><a href="#DataFrame基本操作" class="headerlink" title="DataFrame基本操作"></a>DataFrame基本操作</h2><h3 id="汇总函数"><a href="#汇总函数" class="headerlink" title="汇总函数"></a>汇总函数</h3><p><strong>截断</strong><br><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">返回表或者序列的前n行，默认参数为<span class="number">5</span></span><br><span class="line">df.head(n)</span><br><span class="line">返回表或者序列的后n行，默认参数为<span class="number">5</span></span><br><span class="line">df.tail(n)</span><br></pre></td></tr></table></figure><br><strong>基本信息</strong></p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">df.info()</span><br><span class="line">df.describe()</span><br></pre></td></tr></table></figure>
-]]></content>
   </entry>
   <entry>
     <title>Modelselection</title>
@@ -138,12 +143,30 @@ u=e^tSe-\lambda(e^te-1)</script><script type="math/tex; mode=display">
       </tags>
   </entry>
   <entry>
-    <title>Training Model</title>
-    <url>/2021/04/18/Training%20Model/</url>
-    <content><![CDATA[]]></content>
-      <tags>
-        <tag>handson-ml</tag>
-      </tags>
+    <title></title>
+    <url>/2021/03/24/Pandas%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<hr>
+<h2 id="Pandas使用"><a href="#Pandas使用" class="headerlink" title="Pandas使用"></a>Pandas使用</h2><p><strong>一般约定：</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br></pre></td></tr></table></figure>
+<h1 id="对pandas库的理解"><a href="#对pandas库的理解" class="headerlink" title="对pandas库的理解"></a>对pandas库的理解</h1><ul>
+<li>两个基本数据类型：<strong>Series</strong>,<strong>DataFrame</strong></li>
+<li><strong>Series</strong>提供一维数据类型</li>
+<li><strong>DataFrame</strong>提供高维数据类型</li>
+</ul>
+<span id="more"></span>
+<h1 id="Series类型"><a href="#Series类型" class="headerlink" title="Series类型"></a>Series类型</h1><p>由一组数据及其索引构成。<br><strong>成员：</strong></p>
+<ul>
+<li><strong>index</strong>，索引</li>
+<li><strong>values</strong>，数据，ndarray类型</li>
+</ul>
+<p>既有自定义索引，又有如同数组的索引。<br><strong>创建方法：</strong><br><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">列表创建</span><br><span class="line">pd.series(<span class="built_in">list</span>,index=<span class="built_in">list</span>)</span><br><span class="line">数组创建</span><br><span class="line">pd.series(ndarray,index=ndarray)</span><br><span class="line">标量创建</span><br><span class="line">pd.series(data,index=<span class="built_in">list</span>)</span><br><span class="line">Python字典创建</span><br><span class="line">pd.series(<span class="built_in">dict</span>)</span><br><span class="line">也可以通过index将先后顺序重新排序：</span><br><span class="line">pd.series(<span class="built_in">dict</span>，index=<span class="built_in">list</span>)</span><br></pre></td></tr></table></figure></p>
+<h2 id="Series基本操作"><a href="#Series基本操作" class="headerlink" title="Series基本操作"></a>Series基本操作</h2><p><strong>基本操作与数组和字典类似。</strong><br> <strong>name属性：</strong><br> <strong>series</strong>存在<strong>name</strong>成员，可以对这个序列命名。<br><strong>index</strong>,<strong>values</strong>也都存在<strong>name</strong>成员，打印的时候可以显示在表头</p>
+<h3 id="对齐操作"><a href="#对齐操作" class="headerlink" title="对齐操作"></a>对齐操作</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">当出现series+series之类运算，会采用索引对齐相加，生成新的series。</span><br></pre></td></tr></table></figure>
+<h1 id="DataFrame"><a href="#DataFrame" class="headerlink" title="DataFrame"></a>DataFrame</h1><p>共用相同索引的多条列组成，类似表格。<br><strong>成员：</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">df.columns</span><br></pre></td></tr></table></figure>
+<h2 id="DataFrame基本操作"><a href="#DataFrame基本操作" class="headerlink" title="DataFrame基本操作"></a>DataFrame基本操作</h2><h3 id="汇总函数"><a href="#汇总函数" class="headerlink" title="汇总函数"></a>汇总函数</h3><p><strong>截断</strong><br><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">返回表或者序列的前n行，默认参数为<span class="number">5</span></span><br><span class="line">df.head(n)</span><br><span class="line">返回表或者序列的后n行，默认参数为<span class="number">5</span></span><br><span class="line">df.tail(n)</span><br></pre></td></tr></table></figure><br><strong>基本信息</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">df.info()</span><br><span class="line">df.describe()</span><br></pre></td></tr></table></figure>
+]]></content>
   </entry>
   <entry>
     <title>模型评估与选择</title>
@@ -167,6 +190,14 @@ u=e^tSe-\lambda(e^te-1)</script><script type="math/tex; mode=display">
       <tags>
         <tag>西瓜书</tag>
         <tag>机器学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Training Model</title>
+    <url>/2021/04/18/Training%20Model/</url>
+    <content><![CDATA[]]></content>
+      <tags>
+        <tag>handson-ml</tag>
       </tags>
   </entry>
   <entry>

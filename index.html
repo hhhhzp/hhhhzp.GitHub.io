@@ -222,10 +222,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2021-05-04 14:39:48 / 修改时间：15:39:27" itemprop="dateCreated datePublished" datetime="2021-05-04T14:39:48+08:00">2021-05-04</time>
+              <time title="创建时间：2021-05-04 14:39:48" itemprop="dateCreated datePublished" datetime="2021-05-04T14:39:48+08:00">2021-05-04</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-07-02 11:34:40" itemprop="dateModified" datetime="2021-07-02T11:34:40+08:00">2021-07-02</time>
+              </span>
 
           
 
@@ -243,30 +249,47 @@
 <h2 id="算法描述"><a href="#算法描述" class="headerlink" title="算法描述"></a>算法描述</h2><p><strong>核心：减小类内差异，增大类间差异。</strong></p>
 <p>以二分类为例子。</p>
 <p>给定条件如下：</p>
-<p>$D=\{x_i\}_{i=1}^{n}$，其中$x_i=(x_i^{(1)};x_i^{(2)};…x_i^{(d)})$</p>
-<p>$D_1=\{x_i|x_i \in w_1\}$</p>
-<p>$D_2=\{x_i|x_i \in w_2\}$</p>
-<p><strong>样本中心：</strong></p>
-<p>$m_i=\frac{1}{|D_i|}\Sigma_{x\in D_i}x$</p>
-<p><strong>投影之后：</strong></p>
-<p>$y=w^Tx$</p>
-<p>$\hat m_i=\frac{1}{|D_i|}\Sigma_{x\in D_i}y=\frac{1}{|D_i|}\Sigma_{x\in D_i}w^Tx=w^Tm_i$</p>
-<p><strong>类间散度矩阵：</strong></p>
-<p>$S_B=(m_1-m_2)(m_1-m_2)^T$</p>
-<p><strong>类间差异描述</strong>：</p>
-<p>$|\hat m_1-\hat m_2|^2=|w^T(m_1-m_2)|^2$</p>
-<p>$<del>~</del><del>~</del><del>~</del><del>~</del>=w^T(m_1-m_2)(m_1-m_2)^Tw$</p>
-<p>$<del>~</del><del>~</del><del>~</del><del>~</del>=w^TS_Bw$</p>
-<p><strong>类内散度矩阵：</strong></p>
-<p>$S_i=\Sigma_{x \in D_i}(x-m_i)(x-m_i)^T$</p>
-<p><strong>类内差异描述</strong>：</p>
-<p>$\hat s_i=\Sigma_{x\in D_i}(y-\hat m_i)^2$</p>
-<p>$~~~~=\Sigma_{x\in D_i}(w^Tx-w^Tm_i)^2$</p>
-<p>$~~~~=\Sigma_{x\in D_i}w^T(x-w^Tm_i)(x-w^Tm_i)^Tw$</p>
-<p>$~~~~=w^TS_iw$</p>
-<p>再令：</p>
-<p>$S_w=S_1+S_2$</p>
-<p>需要同时满足核心目标，则将<strong>Fisher criterion function</strong>定义为：</p>
+<script type="math/tex; mode=display">
+D=\{x_i\}_{i=1}^{n},x_i=(x_i^{(1)};x_i^{(2)};...x_i^{(d)})\\
+
+D_1=\{x_i|x_i \in w_1\}\\
+
+D_2=\{x_i|x_i \in w_2\}</script><p><strong>样本中心：</strong></p>
+<script type="math/tex; mode=display">
+m_i=\frac{1}{|D_i|}\Sigma_{x\in D_i}x</script><p><strong>投影之后：</strong></p>
+<script type="math/tex; mode=display">
+y=w^Tx\\</script><script type="math/tex; mode=display">
+\hat m_i=\frac{1}{|D_i|}\Sigma_{x\in D_i}y=\frac{1}{|D_i|}\Sigma_{x\in D_i}\\w^Tx=w^Tm_i</script><p><strong>类间散度矩阵：</strong></p>
+<script type="math/tex; mode=display">
+S_B=(m_1-m_2)(m_1-m_2)^T</script><p><strong>类间差异描述</strong>：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+|\hat m_1-\hat m_2|^2&=|w^T(m_1-m_2)|^2\\
+
+&=w^T(m_1-m_2)(m_1-m_2)^Tw\\
+
+&=w^TS_Bw
+\end{aligned}</script><script type="math/tex; mode=display">
+\begin{aligned}
+|\hat m_1-\hat m_2|^2&=|w^T(m_1-m_2)|^2\\
+
+&=w^T(m_1-m_2)(m_1-m_2)^Tw\\
+
+&=w^TS_Bw
+\end{aligned}</script><p><strong>类内散度矩阵：</strong></p>
+<script type="math/tex; mode=display">
+S_i=\Sigma_{x \in D_i}(x-m_i)(x-m_i)^T</script><p><strong>类内差异描述</strong>：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\hat s_i&=\Sigma_{x\in D_i}(y-\hat m_i)^2\\
+
+&=\Sigma_{x\in D_i}(w^Tx-w^Tm_i)^2\\
+
+&=\Sigma_{x\in D_i}w^T(x-w^Tm_i)(x-w^Tm_i)^Tw\\
+&=w^TS_iw\\
+\end{aligned}</script><p>再令：</p>
+<script type="math/tex; mode=display">
+S_w=S_1+S_2</script><p>需要同时满足核心目标，则将<strong>Fisher criterion function</strong>定义为：</p>
 <script type="math/tex; mode=display">
 J(w)=\frac{|\hat m_1-\hat m_2|^2}{\hat s_1^2+\hat s_2^2}</script><p>基于上述式子，可将问题变形为：</p>
 <script type="math/tex; mode=display">
@@ -278,6 +301,20 @@ J(w)=\frac{w^TS_Bw}{w^TS_ww}</script><p>注意到该式子与$w$的长度无关�
 <p>$S_Bw=\lambda (m_1-m_2)$</p>
 <p>即得:</p>
 <p>$w=S_w^{-1}(m_1-m_2)$</p>
+<p><strong>扩展到c类的线性判别函数：</strong></p>
+<p>此时问题变为：</p>
+<script type="math/tex; mode=display">
+J(W)=\frac{W^TS_BW}{W^TS_wW},W \in R^{d*n}</script><p>其中$d \in \{i|1\le i \le c-1\}$,下面来解释$d$值域的由来：</p>
+<p>与二类一样，本质上我们需要解的问题为：</p>
+<script type="math/tex; mode=display">
+S_bW=\lambda S_wW</script><script type="math/tex; mode=display">
+S_w^{-1}S_bW=\lambda W</script><p>$S_B=\Sigma_{i=1}^{c}|D_i|(m_i-m)(m_i-m)^T$</p>
+<p>$r((m_i-m)(m_i-m)^T)\le 1$,$c$个秩小于$1$的矩阵加和，同时其中只有$c-1$个相互独立的矩阵。</p>
+<p>因此$r(S_B)\le c-1$,$r(S_w^{-1}S_b)\le c-1,$只有最多$c-1$个非零特征值，对应的特征向量也最多只有$c-1$个。</p>
+<h2 id="对比：-PCA-and-LDA"><a href="#对比：-PCA-and-LDA" class="headerlink" title="对比： PCA and LDA"></a>对比： PCA and LDA</h2><p>经过一系列计算，最终我们想要做的操作基本一致,通过：</p>
+<script type="math/tex; mode=display">
+y=Wx</script><p>进行投影。</p>
+<p>由于<strong>PCA</strong>在原来对所有的样本有过<strong>中心化</strong>的操作，所以运算之后还需要<strong>去中心化</strong>，而LDA则不需要。</p>
 
       
     </div>
